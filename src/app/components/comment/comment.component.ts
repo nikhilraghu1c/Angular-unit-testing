@@ -9,41 +9,40 @@ import { Commnet } from '../../models/Comment';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './comment.component.html',
-  styleUrl: './comment.component.css'
+  styleUrl: './comment.component.css',
 })
 export class CommentComponent implements OnInit {
-  allComments:Commnet[] = []
-  text="";
-  constructor(private commentsService:CommentsService){}
+  allComments: Commnet[] = [];
+  text = '';
+  constructor(private commentsService: CommentsService) {}
 
   ngOnInit(): void {
-   this.loadComments()
+    this.loadComments();
   }
 
-  handleChange(e:Event){
+  handleChange(e: Event) {
     this.text = (e.target as HTMLInputElement).value;
   }
 
-  handleSubmit(){
-    if(!this.text){
-      alert("Please add a comment")
-      return
+  handleSubmit() {
+    if (!this.text) {
+      alert('Please add a comment');
+      return;
     }
-    this.commentsService.postComment({
-      id: Date.now(),
-      text:this.text
-    }).subscribe((result:any)=>{
-      this.allComments.push(result)
-      this.text=""
-    })
-  }
-  
-  loadComments(){
-    this.commentsService.getAllComments().subscribe((data: any)=>{
-      this.allComments = data
-    })
+    this.commentsService
+      .postComment({
+        id: Date.now(),
+        text: this.text,
+      })
+      .subscribe((result: any) => {
+        this.allComments.push(result);
+        this.text = '';
+      });
   }
 
-  
-
+  loadComments() {
+    this.commentsService.getAllComments().subscribe((data: any) => {
+      this.allComments = data;
+    });
+  }
 }
