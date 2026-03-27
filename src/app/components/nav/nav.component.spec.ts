@@ -67,3 +67,12 @@ describe('NavComponent', () => {
     expect(router.url).toBe('/about');
   }));
 });
+
+/*
+    Infront of it, if we add f then only that test case will run and the rest of the test cases will be ignored. 
+    Similarly, if we add x infront of it, then that test case will be ignored and the rest of the test cases will run.
+    Same if we add f for describe block, then only that describe block will run and the rest of the describe blocks will be ignored.
+    Similarly, if we add x for describe block, then that describe block will be ignored and the rest of the describe blocks will run.
+*/
+
+
